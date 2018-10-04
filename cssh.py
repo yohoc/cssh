@@ -1,5 +1,6 @@
 import applescript
 import math
+import argparse
 
 
 #applescript example
@@ -131,17 +132,23 @@ class ITERM2():
 '''           
         self.cmd_part.append(cmd_send)
 
-def cluster_run():
-    host_file = '/Users/yohoc/i2_hosts'
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('--file', '-f', type=str, default='/Users/yohoc/i2_hosts', help="Cluster file (one hostname per line)")
+parser.add_argument('--debug', '-d', help="switch on debug mode, print ascript.", action="store_true")
+args = parser.parse_args()
+
+def cluster_run(args):
+    host_file = args.file
     with open(host_file, 'r') as fopen:
         ips = fopen.readlines()
     iterm_run = ITERM2()
     iterm_run.split(ips)
     iterm_run.send_cmd(ips)
     as_run = iterm_run.run()
-    print as_run
+    if args.debug:
+        print as_run
     scpt = applescript.AppleScript(as_run)
     scpt.run()
 
 if __name__ == '__main__':
-    cluster_run()
+    cluster_run(args)
