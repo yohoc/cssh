@@ -49,7 +49,9 @@ class ITERM2():
         self.cmd_part = []
 
 
-    def run(self):
+    def run(self, ips):
+        self.split(ips)
+        self.send_cmd(ips)
         run_start = 'tell application \"iTerm2\"\n'
         run_end = 'end tell\n'
         split_string = ''.join(self.split_part)
@@ -134,7 +136,7 @@ class ITERM2():
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--file', '-f', type=str, default='/Users/yohoc/i2_hosts', help="Cluster file (one hostname per line)")
-parser.add_argument('--debug', '-d', help="switch on debug mode, print ascript.", action="store_true")
+parser.add_argument('--debug', '-d', default=False, help="switch on debug mode, print ascript.", action="store_true")
 args = parser.parse_args()
 
 def cluster_run(args):
@@ -142,9 +144,7 @@ def cluster_run(args):
     with open(host_file, 'r') as fopen:
         ips = fopen.readlines()
     iterm_run = ITERM2()
-    iterm_run.split(ips)
-    iterm_run.send_cmd(ips)
-    as_run = iterm_run.run()
+    as_run = iterm_run.run(ips)
     if args.debug:
         print as_run
     scpt = applescript.AppleScript(as_run)
