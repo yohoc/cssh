@@ -6,30 +6,33 @@ import argparse
 #applescript example
 '''
 tell application "iTerm2"
-    create window with profile "smaller"
+    create window with profile "Default"
         tell current session of current window
-            split horizontally with profile "smaller"
-            split horizontally with profile "smaller"
+            split horizontally with profile "Default"
+            split horizontally with profile "Default"
         end tell
         tell session 1 of current tab of current window
-            split vertically with profile "smaller"
-            split vertically with profile "smaller"
-            split vertically with profile "smaller"
+            split vertically with profile "Default"
+            split vertically with profile "Default"
+            split vertically with profile "Default"
         end tell
         tell session 5 of current tab of current window
-            split vertically with profile "smaller"
-            split vertically with profile "smaller"
-            split vertically with profile "smaller"
+            split vertically with profile "Default"
+            split vertically with profile "Default"
+            split vertically with profile "Default"
         end tell
         tell session 9 of current tab of current window
-            split vertically with profile "smaller"
-            split vertically with profile "smaller"
-            split vertically with profile "smaller"
+            split vertically with profile "Default"
+            split vertically with profile "Default"
+            split vertically with profile "Default"
         end tell
         tell session 12 of current tab of current window
             close
         end tell
-        set commands to { "ssh 10.191.102.11","ssh 10.191.102.12","ssh 10.191.102.13","ssh 10.191.102.14","ssh 10.191.102.15","ssh 10.191.102.16","ssh 10.191.102.17","ssh 10.191.102.18","ssh 10.191.102.19","ssh 10.191.102.20","ssh 10.191.102.21"}
+        tell session 11 of current tab of current window
+            close
+        end tell
+        set commands to { "ssh 192.168.1.1","ssh 192.168.1.2","ssh 192.168.1.3","ssh 192.168.1.4","ssh 192.168.1.5","ssh 192.168.1.6","ssh 192.168.1.7","ssh 192.168.1.8","ssh 192.168.1.9","ssh 192.168.1.10"}
         repeat with i from 1 to count of commands
             tell session i of current tab of current window
                 write text (item i of commands)
