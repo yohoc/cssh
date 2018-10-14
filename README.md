@@ -1,4 +1,4 @@
-# cssh
+# issh
 i2cssh like tools,cluster ssh to multiple hosts.    
 usage: issh.py [-h] [--file FILE] [--debug]    
 
