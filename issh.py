@@ -68,7 +68,7 @@ class ITERM2():
     def split(self, ips):
         nnodes = len(ips)
         if nnodes > 10:
-#when opening more than 10 sessions，set font to 11.(use daynamic profile)
+#when opening more than 10 sessions,set font to 11.(use daynamic profile)
             dynamic_profile_content = '''{
   "Profiles": [
     {
